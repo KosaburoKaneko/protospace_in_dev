@@ -27,4 +27,4 @@ group :development do
 end
 
 gem 'sqlite3', group: [:development, :test]
-gem 'pg', group: :production
+gem 'pg', '~> 0.19.0', group: :production
