@@ -20,6 +20,8 @@ class PrototypesController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = Comment.where(prototype_id: params[:id])
   end
 
   private
