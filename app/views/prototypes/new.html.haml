@@ -34,7 +34,9 @@
           = f.text_area :concept, require: true, placeholder: "Input Concept"
         .col-md-12
           %h4 タグ作成
-          = form_tag("tags/create", method: "post") do
-            =
+          -# = form_tag("tags/create", method: "post") do
+          -#   %input{type:"textbox", placeholder: "タグを入れてね", name:"name"}
+          = f.text_area :tags, placeholder: "タグ書いてね！"
+
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
