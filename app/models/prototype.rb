@@ -3,7 +3,7 @@ class Prototype < ActiveRecord::Base
   has_many :captured_images, dependent: :destroy
   has_many :comments
   has_many :likes
-  
+
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
   validates :title,
@@ -21,5 +21,13 @@ class Prototype < ActiveRecord::Base
 
   def posted_date
     created_at.strftime('%b %d %a')
+  end
+
+  def good(user)
+    likes.create(user_id: user.id)
+  end
+
+  def bad(user)
+    likes.find(user_id: user.id).destroy
   end
 end
