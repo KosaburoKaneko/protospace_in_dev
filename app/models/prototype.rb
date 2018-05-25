@@ -3,6 +3,7 @@ class Prototype < ActiveRecord::Base
   has_many :captured_images, dependent: :destroy
   has_many :comments
   has_many :likes
+  has_many :good_users, through: :likes, source: :user
 
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
@@ -29,5 +30,9 @@ class Prototype < ActiveRecord::Base
 
   def bad(user)
     likes.find(user_id: user.id).destroy
+  end
+
+  def good?(user)
+    good_users.include?(user)
   end
 end
