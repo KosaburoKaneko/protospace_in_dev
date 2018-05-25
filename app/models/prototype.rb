@@ -12,6 +12,8 @@ class Prototype < ActiveRecord::Base
             :concept,
             presence: true
 
+  accepts_nested_attributes_for :prototypes_tag
+
   def reject_sub_images(attributed)
     attributed['content'].blank?
   end

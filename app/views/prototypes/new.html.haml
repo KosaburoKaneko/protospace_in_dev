@@ -1,5 +1,5 @@
 .container.proto-new
-  = form_for @prototype do |f|
+  = form_for [@prototype, @tag], url: prototypes_path  do |f|
     = f.hidden_field :user_id, value: current_user.id
     .col-md-8.col-md-offset-2
       %header.row.user-nav.row
@@ -33,10 +33,11 @@
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
         .col-md-12
-          %h4 タグ作成
-          -# = form_tag("tags/create", method: "post") do
-          -#   %input{type:"textbox", placeholder: "タグを入れてね", name:"name"}
-          = f.text_area :tags, placeholder: "タグ書いてね！"
+          = f.fields_for :prototypes_tag do |fin|
+            -# = fin.label :name
+            -#   %h4 タグ作成
+            = fin.text_field :tag_id, placeholder: "ID"
+            -# = fin.text_field :name, placeholder: "タグ書いてね！"
 
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
