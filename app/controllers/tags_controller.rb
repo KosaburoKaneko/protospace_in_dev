@@ -16,6 +16,11 @@ class TagsController < ApplicationController
   def edit
   end
 
+  def show
+    @tag = Tag.find(params[:id])
+    @prototypes = @tag.prototypes
+  end
+
   def update
   end
 

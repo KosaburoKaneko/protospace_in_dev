@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'prototypes#index'
+  get "/tags/:id" => 'tags#show'
 
 
   resources :prototypes, only: [:index, :new, :create, :show, :destroy]  do
