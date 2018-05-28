@@ -36,6 +36,14 @@
         - @tags.each do |tag|
           %li
             = link_to "#{tag.name}", "/tags/#{tag.id}"
+  .comment
+    = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
+      = f.text_area :name, placeholder: "タグ書いてね！"
+      = f.submit "Submit"
+    -# - @comments.each do |comment|
+    -#   = comment.content
+    -#   = link_to "編集", edit_prototype_comment_path(@prototype, comment)
+    -#   = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete
 
 
   .comment

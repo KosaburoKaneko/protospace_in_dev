@@ -31,6 +31,7 @@ class PrototypesController < ApplicationController
     @comment = Comment.new
     @comments = Comment.where(prototype_id: params[:id])
     @tags = @prototype.tags
+    @tag = Tag.new
   end
 
   private

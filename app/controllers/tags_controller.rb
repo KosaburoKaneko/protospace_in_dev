@@ -9,8 +9,10 @@ class TagsController < ApplicationController
   end
 
   def create
+    @prototype = Prototype.find(params[:id])
     @tag = Tag.new(tag_params)
     @tag.save
+    redirect_to controller: "prototypes", action: "show"
   end
 
   def edit
