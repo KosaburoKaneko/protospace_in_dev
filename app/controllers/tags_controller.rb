@@ -9,10 +9,10 @@ class TagsController < ApplicationController
   end
 
   def create
-    @prototype = Prototype.find(params[:id])
     @tag = Tag.new(tag_params)
     @tag.save
-    redirect_to controller: "prototypes", action: "show"
+    @prototype = Prototype.find(params[:prototype_id])
+    redirect_to prototype_path(@prototype)
   end
 
   def edit
@@ -31,6 +31,7 @@ class TagsController < ApplicationController
 
   private
     def tag_params
-      params.require(:tag).permit(:name)
+      params.require(:tag).permit(:name, {prototype_ids: []})
+
     end
 end
