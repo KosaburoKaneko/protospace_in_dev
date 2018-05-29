@@ -27,6 +27,9 @@ class TagsController < ApplicationController
   end
 
   def destroy
+    @prototypes_tag = PrototypesTag.find_by(tag_id: params[:id], prototype_id: params[:prototype_id])
+    @prototypes_tag.destroy
+    redirect_to prototype_path(params[:prototype_id])
   end
 
   private
