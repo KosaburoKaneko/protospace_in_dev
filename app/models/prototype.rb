@@ -1,9 +1,12 @@
 class Prototype < ActiveRecord::Base
+  MAX_PROTOTYPES_TAGS_LENGTH = 3
   belongs_to :user
   has_many :captured_images, dependent: :destroy
   has_many :prototypes_tag
   has_many :tags, through: :prototypes_tag
   has_many :comments
+
+  validates_length_of :tags, maximum: 2
 
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
@@ -26,3 +29,4 @@ class Prototype < ActiveRecord::Base
     created_at.strftime('%b %d %a')
   end
 end
+
