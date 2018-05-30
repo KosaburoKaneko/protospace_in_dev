@@ -34,6 +34,10 @@ class TagsController < ApplicationController
     redirect_to prototype_path(params[:prototype_id])
   end
 
+  def prototypes
+    @tag = Tag.find_by(id: params[:id])
+    @tags = @tag.prototypes
+  end
   private
     def tag_params
       params.require(:tag).permit(:name, {prototype_ids: []})

@@ -4,3 +4,5 @@ class Tag < ActiveRecord::Base
   validates :name, presence: true
   #3つ以上は作れないようにする
 end
+
+
