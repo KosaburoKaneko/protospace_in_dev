@@ -1,0 +1,4 @@
+.div
+  = form_for [@prototype, @comment] do |f|
+    = f.text_area :content, placeholder: "コメント書いてね！"
+    = f.submit "Submit"
