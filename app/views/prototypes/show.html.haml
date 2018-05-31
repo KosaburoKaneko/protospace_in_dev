@@ -37,23 +37,12 @@
           %li
             = link_to "#{tag.name}", "/tags/#{tag.id}"
             = link_to "削除", prototype_tag_path(@prototype, tag), method: :delete
+  = link_to "編集", edit_prototype_path(@prototype)
   .comment
     = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
-      -# - if @prototype.errors.any?
-      -#   #error_explanation.alert.alert-danger
-      -#     %ul
-      -#       - @prototype.errors.full_messages.each do |message|
-      -#         %li= message
       %input{name: "tag[prototype_ids][]", type: "hidden", value: "#{@prototype.id}"}
       = f.text_area :name, placeholder: "タグ書いてね！"
       = f.submit "Submit"
-
-    -# - @comments.each do |comment|
-    -#   = comment.content
-    -#   = link_to "編集", edit_prototype_comment_path(@prototype, comment)
-    -#   = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete
-
-
   .comment
     = form_for [@prototype, @comment] do |f|
       = f.text_area :content, placeholder: "コメント書いてね！"

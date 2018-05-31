@@ -1,5 +1,5 @@
-class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+ class PrototypesController < ApplicationController
+  before_action :set_prototype, only: [:show, :edit, :destroy, :update]
 
   def index
     @prototypes = Prototype.order("created_at DESC").page(params[:page]).per(5)
@@ -21,7 +21,6 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    @prototype = Prototype.find(params[:id])
     if @prototype.user_id == current_user.id
       @prototype.destroy
     end
@@ -32,6 +31,14 @@ class PrototypesController < ApplicationController
     @comments = Comment.where(prototype_id: params[:id])
     @tags = @prototype.tags
     @tag = Tag.new
+  end
+
+  def edit
+  end
+
+  def update
+    @prototype.update(prototype_params)
+    redirect_to action: "show" , notice: "編集が完了しました。"
   end
 
   private

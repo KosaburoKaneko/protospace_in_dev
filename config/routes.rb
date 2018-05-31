@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "/tags" => 'tags#index'
   get "tags/:id/prototypes" => "tags#prototypes"
 
-  resources :prototypes, only: [:index, :new, :create, :show, :destroy]  do
+  resources :prototypes, only: [:index, :new, :create, :edit, :update, :show, :destroy]  do
     resources :tags, only:[:create, :new, :update, :edit, :destroy]
     resources :comments, only:[:create, :new, :update, :edit, :destroy]
   end
