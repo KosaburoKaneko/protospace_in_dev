@@ -4,6 +4,7 @@ class Prototype < ActiveRecord::Base
   has_many :prototypes_tag, dependent: :destroy
   has_many :tags, through: :prototypes_tag, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates_length_of :tags, maximum: 2
 
@@ -26,6 +27,10 @@ class Prototype < ActiveRecord::Base
 
   def posted_date
     created_at.strftime('%b %d %a')
+  end
+
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
   end
 end
 
