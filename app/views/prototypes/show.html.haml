@@ -3,8 +3,9 @@
     .col-md-6
       .media
         .media-left
-          = link_to user_path(@prototype.user) do
-            = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
+          - if @prototype.user.avatar.thumb.present?
+            = link_to user_path(@prototype.user) do
+              = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
@@ -37,23 +38,12 @@
           %li
             = link_to "#{tag.name}", "/tags/#{tag.id}"
             = link_to "削除", prototype_tag_path(@prototype, tag), method: :delete
-  .comment
+  = link_to "編集", edit_prototype_path(@prototype)
+  .tag
     = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
-      -# - if @prototype.errors.any?
-      -#   #error_explanation.alert.alert-danger
-      -#     %ul
-      -#       - @prototype.errors.full_messages.each do |message|
-      -#         %li= message
       %input{name: "tag[prototype_ids][]", type: "hidden", value: "#{@prototype.id}"}
       = f.text_area :name, placeholder: "タグ書いてね！"
       = f.submit "Submit"
-
-    -# - @comments.each do |comment|
-    -#   = comment.content
-    -#   = link_to "編集", edit_prototype_comment_path(@prototype, comment)
-    -#   = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete
-
-
   .comment
     = form_for [@prototype, @comment] do |f|
       = f.text_area :content, placeholder: "コメント書いてね！"

@@ -1,5 +1,5 @@
-class PrototypesController < ApplicationController
-  before_action :set_prototype, only: :show
+ class PrototypesController < ApplicationController
+  before_action :set_prototype, only: [:show, :edit, :destroy, :update]
 
   def index
     @prototypes = Prototype.order("created_at DESC").page(params[:page]).per(5)
@@ -16,12 +16,11 @@ class PrototypesController < ApplicationController
     if @prototype.save
       redirect_to :root, notice: 'New prototype was successfully created'
     else
-      redirect_to action: "new", alert: 'YNew prototype was unsuccessfully created'
-     end
+      redirect_to action: "new", alert: 'New prototype was unsuccessfully created'
+    end
   end
 
   def destroy
-    @prototype = Prototype.find(params[:id])
     if @prototype.user_id == current_user.id
       @prototype.destroy
     end
@@ -32,6 +31,17 @@ class PrototypesController < ApplicationController
     @comments = Comment.where(prototype_id: params[:id])
     @tags = @prototype.tags
     @tag = Tag.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @prototype.update(prototype_params)
+      redirect_to action: "show"
+    else
+      redirect_to action: "edit"
+    end
   end
 
   private
@@ -45,12 +55,8 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status],
-      tags_attributes: [:name]
+      captured_images_attributes: [:content, :status, :id],
+      tags_attributes: [:id, :name]
     )
   end
-
-  # def tag_params
-  #   params.require(:tag).permit(:name)
-  # end
 end

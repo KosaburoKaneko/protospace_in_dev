@@ -1,12 +1,10 @@
 class Prototype < ActiveRecord::Base
-  MAX_PROTOTYPES_TAGS_LENGTH = 3
   belongs_to :user
   has_many :captured_images, dependent: :destroy
-  has_many :prototypes_tag
-  has_many :tags, through: :prototypes_tag
-  has_many :comments
+  has_many :prototypes_tag, dependent: :destroy
+  has_many :tags, through: :prototypes_tag, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  # has_many :good_users, through: :likes, source: :user
 
   validates_length_of :tags, maximum: 2
 
