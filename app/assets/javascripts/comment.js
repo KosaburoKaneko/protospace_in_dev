@@ -1,4 +1,4 @@
-$(function() {
+$(document).on("turbolinks:load", function() {
   function buildHTML(comment) {
     var html = `<div class="main_content__chat_space__comment">
                   ${comment.content}
