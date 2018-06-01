@@ -2,7 +2,7 @@
   before_action :set_prototype, only: [:show, :edit, :destroy, :update]
 
   def index
-    @prototypes = Prototype.order("created_at DESC").page(params[:page]).per(5)
+    @prototypes = Prototype.includes(:likes).order("created_at DESC").page(params[:page]).per(5)
   end
 
   def new

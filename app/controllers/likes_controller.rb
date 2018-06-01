@@ -1,14 +1,17 @@
 class LikesController < ApplicationController
-  before_action :logged_in_user
 
   def create
-    @prototype = Prototype.find(params[:prototype_id])
-    @prototype.good(current_user)
+   @like = Like.create(user_id: current_user.id, prototype_id: params[:prototype_id])
+   # likes_selectedとprototypes_allを/concern/common.rbにて定義
+   likes_selected
+   prototypes_all
   end
 
   def destroy
-    @prototype = Like.find(params[:id]).prototype
-    @prototype.bad(current_user)
+   like = Like.find_by(user_id: current_user.id, prototype_id: params[:prototype_id])
+   like.destroy
+   likes_selected
+   prototypes_all
   end
 end
 
