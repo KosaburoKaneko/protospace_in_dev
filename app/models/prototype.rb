@@ -1,9 +1,9 @@
 class Prototype < ActiveRecord::Base
   belongs_to :user
   has_many :captured_images, dependent: :destroy
-  has_many :prototypes_tag
-  has_many :tags, through: :prototypes_tag
-  has_many :comments
+  has_many :prototypes_tag, dependent: :destroy
+  has_many :tags, through: :prototypes_tag, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates_length_of :tags, maximum: 2
 
