@@ -1,4 +1,5 @@
 class Prototype < ActiveRecord::Base
+  MAX_PROTOTYPES_TAGS_LENGTH = 3
   belongs_to :user
   has_many :captured_images, dependent: :destroy
   has_many :prototypes_tag
@@ -7,12 +8,16 @@ class Prototype < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   # has_many :good_users, through: :likes, source: :user
 
+  validates_length_of :tags, maximum: 2
+
   accepts_nested_attributes_for :captured_images, reject_if: :reject_sub_images
 
   validates :title,
             :catch_copy,
             :concept,
             presence: true
+
+  accepts_nested_attributes_for :tags
 
   def reject_sub_images(attributed)
     attributed['content'].blank?
@@ -30,3 +35,4 @@ class Prototype < ActiveRecord::Base
     likes.find_by(user_id: user_id)
   end
 end
+

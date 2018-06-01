@@ -7,6 +7,7 @@ class PrototypesController < ApplicationController
 
   def new
     @prototype = Prototype.new
+    @prototype.tags.build
     @prototype.captured_images.build
   end
 
@@ -29,10 +30,11 @@ class PrototypesController < ApplicationController
   def show
     @comment = Comment.new
     @comments = Comment.where(prototype_id: params[:id])
+    @tags = @prototype.tags
+    @tag = Tag.new
   end
 
   private
-
   def set_prototype
     @prototype = Prototype.find(params[:id])
   end
@@ -43,7 +45,12 @@ class PrototypesController < ApplicationController
       :catch_copy,
       :concept,
       :user_id,
-      captured_images_attributes: [:content, :status]
+      captured_images_attributes: [:content, :status],
+      tags_attributes: [:name]
     )
   end
+
+  # def tag_params
+  #   params.require(:tag).permit(:name)
+  # end
 end
