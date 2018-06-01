@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.8'
 gem 'mysql2', '~> 0.3.18'
 gem 'sass-rails', "5.0.7"
 gem 'uglifier', '>= 1.3.0'
@@ -15,7 +15,7 @@ gem 'erb2haml'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'carrierwave'
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick'
 
 group :development, :test do
   gem 'byebug'
