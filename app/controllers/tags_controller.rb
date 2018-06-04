@@ -23,7 +23,7 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
-    @prototypes = @tag.prototypes
+    @prototypes = @tag.prototypes.page(params[:page]).per(5)
   end
 
   def update

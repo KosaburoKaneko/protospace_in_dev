@@ -1,3 +1,7 @@
 - @tags.each do |tag|
-  .tag
-    = tag.name
+  .card-deck
+    .card
+      .card-body
+        = link_to "#{tag.name}", "/tags/#{tag.id}"
+      
+      
