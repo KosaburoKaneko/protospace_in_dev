@@ -3,15 +3,6 @@ $(document).on('turbolinks:load', function(){
   var prototype_zone = $(".proto-zone")
 
   function buildHTML(prototype){
-    // var tag_html = ""
-
-    // prototype.tags.forEach(function(tag){
-    //   tag_html +=
-    //   `<li>
-    //       <a class="btn btn-default" href="/tags/${tag.id}">
-    //       ${tag.name}</a>
-    //     </li>`
-    // })
 
     if (prototype.likes_count != null ){
       like_html =
