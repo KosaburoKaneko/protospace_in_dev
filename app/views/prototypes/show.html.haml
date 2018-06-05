@@ -14,6 +14,15 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
+    .col-md-6.text-right
+      .likes#like-zone
+        = render partial: 'likes/like', locals: { prototype: @prototype, likes: @likes }
+      -if user_signed_in? && current_user.id == @prototype.user.id
+        .btn.btn-default.btn-edit.btn-margin-top
+          = link_to "edit", edit_prototype_path(@prototype)
+        .btn.btn-default.btn-edit.btn-margin-top
+          = link_to "delete", "/prototypes/#{@prototype.id}", method: :delete
+
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -36,7 +45,7 @@
       %ul.proto-tag-list.list-inline
         - @tags.each do |tag|
           %li
-            = link_to "#{tag.name}", "/tags/#{tag.id}"
+            = link_to "#{tag.name}", "/tags/#{tag.id}", class: "btn btn-default"
             = link_to "削除", prototype_tag_path(@prototype, tag), method: :delete
   = link_to "編集", edit_prototype_path(@prototype)
   .tag
