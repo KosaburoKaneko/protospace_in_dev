@@ -6,10 +6,10 @@
   .container
     .row
       %ul.nav.nav-pills.col-lg-11
-        %li.btn-default#btn-popular
-          = link_to "Popular", "#"
-        %li.btn-default#btn-newest
-          = link_to "Newest", "#"
+        %li.btn-default.btn-popular
+          = link_to "Popular", "#", id: 'btn-popular'
+        %li.btn-default.btn-popular
+          = link_to "Newest", "#", id: 'btn-newest'
       = link_to "VIEW TAGS", "tags#index", class: "btn btn-default col-lg-1"
 
 .container.proto-list
