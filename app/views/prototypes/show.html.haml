@@ -47,7 +47,6 @@
           %li
             = link_to "#{tag.name}", "/tags/#{tag.id}", class: "btn btn-default"
             = link_to "削除", prototype_tag_path(@prototype, tag), method: :delete
-  = link_to "編集", edit_prototype_path(@prototype)
   .tag
     = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
       %input{name: "tag[prototype_ids][]", type: "hidden", value: "#{@prototype.id}"}
