@@ -17,6 +17,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -moz-font-feature-settings: "liga", "kern";
 }
+footer{
+  text-align: center;
+  p {
+    font-weight: bold;
+  }
+}
 
 /* -- Main style ------------------------------------ */
 .btn {
@@ -641,4 +647,60 @@ body {
 
 .icon_heart {
   height: 15px;
+}
+
+/* -- tag index -------------------------------- */
+.tag-list{
+  overflow: hidden;
+  padding: 0;
+  margin: 30px 0;
+  .btn-default:hover {
+    border: 1px solid #eee;
+    background: #eee;
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+  .btn:hover, .btn:focus, .btn.focus {
+    color: #333;
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+  }
+  li a:hover {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(103, 171, 250, 0.2);
+    color: #67ABFA;
+  }
+  li a {
+    display: block;
+    text-align: left;
+    padding: 20px;
+    border-radius: 3px;
+  }
+  .card{
+    margin-bottom: 10px;
+    width: 33.33333333%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    &:after {
+      clear: both;
+      content:"";
+      display: block;
+     }
+  }
+}
+
+#upload_img {
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  height: 500px;
+  border-style: none;
+  border: 0;
 }
