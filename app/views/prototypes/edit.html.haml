@@ -11,9 +11,9 @@
         .col-md-12
           %h4 Main Thumbnail
           .cover-image-upload#main_image_uploader
-            = f.fields_for :captured_images, url: prototype_path(@prototype)  do |image|
-              %img
-              = image.file_field :content, required: true
+            = f.fields_for :captured_images, url: prototype_path(@prototype.captured_images)  do |image|
+              %img#upload_img
+              = image.file_field :content, required: true , value: "#{@prototype_image[0][:content]}"
               = image.hidden_field :status, value: "main"
         .col-md-12
           %h4 Sub Thumbnails
@@ -33,6 +33,7 @@
           %h4 Concept
           = f.text_area :concept, require: true, placeholder: "Input Concept"
         .col-md-12
+          %h4 Tag
           = f.fields_for :tags, url: prototype_path(@prototype) do |tag_field|
             = tag_field.text_field :name, placeholder: "タグ書いてね"
       .row.text-center.proto-btn

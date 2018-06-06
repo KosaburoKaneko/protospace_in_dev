@@ -36,6 +36,7 @@
   end
 
   def edit
+    @prototype_image = Prototype.find(params[:id]).captured_images
   end
 
   def update
