@@ -1,0 +1,34 @@
+.tag {
+    .form-group {
+      .form-control {
+        float: left;
+        width: 200px;
+        margin-right: 20px;
+      }
+      .btn-primary {
+        float: left;
+        width: 50px;
+      }
+    }
+}
+
+
+.comment {
+  clear: both;
+  &__post {
+    .form-group {
+      .form-control {
+        float: left;
+        width: 90%;
+        margin-right: 20px;
+      }
+      .btn-primary {
+        float: right;
+        width: calc(100% - 20px - 90%);
+      }
+    }
+  }
+  &__content {
+    clear: both;
+  }
+}

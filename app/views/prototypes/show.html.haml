@@ -47,16 +47,33 @@
           %li
             = link_to "#{tag.name}", "/tags/#{tag.id}", class: "btn btn-default"
             = link_to "削除", prototype_tag_path(@prototype, tag), method: :delete
-  .tag
-    = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
-      %input{name: "tag[prototype_ids][]", type: "hidden", value: "#{@prototype.id}"}
-      = f.text_area :name, placeholder: "タグ書いてね！"
-      = f.submit "Submit"
-  .comment
-    = form_for [@prototype, @comment] do |f|
-      = f.text_area :content, placeholder: "コメント書いてね！"
-      = f.submit "Submit"
-    - @comments.each do |comment|
-      = comment.content
-      = link_to "編集", edit_prototype_comment_path(@prototype, comment)
-      = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete
+  - if user_signed_in? && current_user.id == @prototype.user_id
+    .tag
+      %h4.tag_write
+        Write a tag.
+      = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
+        %input{name: "tag[prototype_ids][]", type: "hidden", value: "#{@prototype.id}"}
+        .form-group
+          = f.text_area :name, placeholder: "タグ書いてね！", class: "form-control"
+        .form-group
+          = f.submit "Submit", class: "btn btn-primary"
+  - if user_signed_in?
+    .comment
+      %h4.comment_write
+        Write a comment.
+      = form_for [@prototype, @comment], html: {class: "comment__post"} do |f|
+        .form-group
+          = f.text_area :content, placeholder: "コメント書いてね！", class: "form-control"
+        .form-group
+          = f.submit "Submit", class: "btn btn-primary"
+      .comment__content
+        %h4.comment__footer
+          Comments
+          %span.comment__count= @comments.length
+          - @comments.each do |comment|
+            %h5= comment.user.name
+            %p= comment.content
+            - if user_signed_in? && current_user.id == comment.user_id
+              = link_to "編集", edit_prototype_comment_path(@prototype, comment), class: "btn btn-info btn-xs"
+              = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete, class: "btn btn-info btn-xs"
+              %br
