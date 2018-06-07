@@ -18,15 +18,17 @@
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
-      redirect_to :root, notice: 'New prototype was successfully created'
+      redirect_to :root, notice: 'プロトタイプが作成されました'
     else
-      redirect_to action: "new", alert: 'New prototype was unsuccessfully created'
+      redirect_to action: "new", notice: 'プロトタイプ作成に失敗しました'
     end
   end
 
   def destroy
-    if @prototype.user_id == current_user.id
+    if user_signed_in? && @prototype.user_id == current_user.id
       @prototype.destroy
+    else
+      redirect_to :root, notice: 'プロトタイプ削除に失敗しました'
     end
   end
 
@@ -42,9 +44,9 @@
 
   def update
     if @prototype.update(prototype_params)
-      redirect_to action: "show"
+      redirect_to @prototype, notice: 'プロトタイプが編集されました'
     else
-      redirect_to action: "edit"
+      redirect_to @prototype, notice: 'プロトタイプ編集に失敗しました'
     end
   end
 

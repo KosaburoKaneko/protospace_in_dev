@@ -2,7 +2,6 @@ $(document).on("turbolinks:load", function() {
   function buildHTML(comment) {
     var html = `<div class="main_content__chat_space__comment">
                   ${comment.content}
-                  ${comment.created_at}
                   <a href="/prototypes/${comment.prototype_id}/comments/${comment.id}/edit">編集</a>
                   <a rel="nofollow" data-method="delete" href="/prototypes/${comment.prototype_id}/comments/${comment.id}">削除</a>
                 </div>`
