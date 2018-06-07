@@ -76,6 +76,11 @@ GEM
       html2haml
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.1)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
     ffi (1.9.23)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -249,6 +254,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   erb2haml
+  factory_girl_rails (~> 4.4.1)
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
