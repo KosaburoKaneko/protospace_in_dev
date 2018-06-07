@@ -69,10 +69,15 @@
       .comment__content
         %h4.comment__footer
           Comments
-          %span.comment__count= @comments.length
-          - @comments.each do |comment|
-            %h5= comment.user.name
-            %p= comment.content
+          %span.comment__count (#{@comments.length})
+        - @comments.each do |comment|
+          .comment__body
+            %h5.user-name
+              = comment.user.name
+              %span.posted-time
+                = comment.created_at.to_s
+            %p.comment-body
+              = comment.content
             - if user_signed_in? && current_user.id == comment.user_id
               = link_to "編集", edit_prototype_comment_path(@prototype, comment), class: "btn btn-info btn-xs"
               = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete, class: "btn btn-info btn-xs"
