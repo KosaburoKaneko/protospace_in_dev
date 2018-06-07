@@ -54,3 +54,8 @@
           = comment.content
           = link_to "編集", edit_prototype_comment_path(@prototype, comment)
           = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete
+  .proto-good
+    = render partial: 'likes/like', locals: { prototype: @prototype }
+  - if user_signed_in? && current_user.id == @prototype.user_id
+    .proto-delete
+      = link_to '削除', "/prototypes/#{prototype.id}", method: :delete

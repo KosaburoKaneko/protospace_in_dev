@@ -7,15 +7,15 @@
     .row
       %ul.nav.nav-pills.col-lg-11
         %li.btn-default.btn-popular
-          = link_to "Popular", "#"
+          = link_to "Popular", "#", id: 'btn-popular'
         %li.btn-default.btn-popular
-          = link_to "Newest", "#"
+          = link_to "Newest", "#", id: 'btn-newest'
       = link_to "VIEW TAGS", "tags#index", class: "btn btn-default col-lg-1"
 
 .container.proto-list
-  .row
+  .row.proto-zone
     = render partial: 'prototypes/prototype', collection: @prototypes
 
 .text-center
   = paginate(@prototypes)
-
+  

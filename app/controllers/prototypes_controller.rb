@@ -3,6 +3,10 @@
 
   def index
     @prototypes = Prototype.includes(:likes).order("created_at DESC").page(params[:page]).per(5)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def new
