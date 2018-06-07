@@ -75,7 +75,7 @@
             %h5.user-name
               = comment.user.name
               %span.posted-time
-                = comment.created_at.to_s
+                = comment.created_at.to_s(:datetime)
             %p.comment-body
               = comment.content
             - if user_signed_in? && current_user.id == comment.user_id
