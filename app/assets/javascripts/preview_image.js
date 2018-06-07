@@ -1,5 +1,5 @@
 $(function(){
-  $('#prototype_captured_images_attributes_0_content').change(function(e){
+  $('.img').change(function(e){
     //ファイルオブジェクトを取得する
     var file = e.target.files[0];
     var reader = new FileReader();
@@ -13,8 +13,8 @@ $(function(){
     //アップロードした画像を設定する
     reader.onload = (function(file){
       return function(e){
-        $("#upload_img").attr("src", e.target.result);
-        $(".cover-image-upload").css({
+        $(".upload_img").attr("src", e.target.result);
+        $(".cover-image-uploader").css({
           "background": "none"
         })
       };

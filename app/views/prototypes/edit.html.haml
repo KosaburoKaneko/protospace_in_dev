@@ -13,12 +13,8 @@
           .cover-image-upload#main_image_uploader
             = f.fields_for :captured_images, @main_image, url: prototype_path(@prototype.captured_images) do |image|
               = image_tag @main_image
-              -#   %img.upload_img
               = image.file_field :content, required: true
-              -# = image_tag @main_image
               = image.hidden_field :status, value: "main"
-
-
 
 
 
