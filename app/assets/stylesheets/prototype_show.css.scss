@@ -15,6 +15,9 @@
 
 .comment {
   clear: both;
+  .comment_write {
+    padding-top: 10px;
+  }
   &__post {
     .form-group {
       .form-control {
@@ -30,5 +33,13 @@
   }
   &__content {
     clear: both;
+    .comment__footer {
+      padding-top: 10px;
+    }
+    .posted-time {
+      font-weight: normal;
+      font-size: 8px;
+      margin-left: 10px;
+    }
   }
 }
