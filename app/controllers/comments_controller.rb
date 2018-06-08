@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
           format.json
         end
       else
-        redirect_to action: "new", alert: 'YNew comment was unsuccessfully created'
+        redirect_to "/prototypes/#{@prototype.id}"
       end
   end
 

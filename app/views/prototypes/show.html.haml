@@ -3,8 +3,9 @@
     .col-md-6
       .media
         .media-left
-          = link_to user_path(@prototype.user) do
-            = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
+          - if @prototype.user.avatar.thumb.present?
+            = link_to user_path(@prototype.user) do
+              = image_tag(@prototype.user.avatar.thumb, alt: "profile_photo", class: "media-object", style: "width: 64px; height: 64px;")
         .media-body
           %h4#top-aligned-media.media-heading
             = @prototype.title
@@ -13,6 +14,15 @@
             = link_to "#{@prototype.user.name}", user_path(@prototype.user)
             .degree
               = @prototype.user.position
+    .col-md-6.text-right
+      .likes#like-zone
+        = render partial: 'likes/like', locals: { prototype: @prototype, likes: @likes }
+      -if user_signed_in? && current_user.id == @prototype.user.id
+        .btn.btn-default.btn-edit.btn-margin-top
+          = link_to "edit", edit_prototype_path(@prototype)
+        .btn.btn-default.btn-edit.btn-margin-top
+          = link_to "delete", "/prototypes/#{@prototype.id}", method: :delete
+
   .row
     .col-md-9.image-box
       = image_tag(@prototype.set_main_thumbnail.large, class: 'img-responsive img-size-fix', style: "margin: 0 auto;")
@@ -33,16 +43,42 @@
     .col-md-3
       %h4 Tag List
       %ul.proto-tag-list.list-inline
-        %li
-          %a{href: "#", class: "btn btn-default"} iPad
-        %li
-          %a{href: "#", class: "btn btn-default"} wireframe
-
-  .comment
-    = form_for [@prototype, @comment] do |f|
-      = f.text_area :content, placeholder: "コメント書いてね！"
-      = f.submit "Submit"
-    - @comments.each do |comment|
-      = comment.content
-      = link_to "編集", edit_prototype_comment_path(@prototype, comment)
-      = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete
+        - @tags.each do |tag|
+          %li
+            = link_to "#{tag.name}", "/tags/#{tag.id}", class: "btn btn-default"
+            = link_to "削除", prototype_tag_path(@prototype, tag), method: :delete
+  - if user_signed_in? && current_user.id == @prototype.user_id
+    .tag
+      %h4.tag_write
+        Write a tag.
+      = form_for @tag, url: prototype_tags_path(@prototype, @tag), method: :post do |f|
+        %input{name: "tag[prototype_ids][]", type: "hidden", value: "#{@prototype.id}"}
+        .form-group
+          = f.text_area :name, placeholder: "タグ書いてね！", class: "form-control"
+        .form-group
+          = f.submit "Submit", class: "btn btn-primary"
+  - if user_signed_in?
+    .comment
+      %h4.comment_write
+        Write a comment.
+      = form_for [@prototype, @comment], html: {class: "comment__post"} do |f|
+        .form-group
+          = f.text_area :content, placeholder: "コメント書いてね！", class: "form-control"
+        .form-group
+          = f.submit "Submit", class: "btn btn-primary"
+      .comment__content
+        %h4.comment__footer
+          Comments
+          %span.comment__count (#{@comments.length})
+        - @comments.each do |comment|
+          .comment__body
+            %h5.user-name
+              = comment.user.name
+              %span.posted-time
+                = comment.created_at.to_s(:datetime)
+            %p.comment-body
+              = comment.content
+            - if user_signed_in? && current_user.id == comment.user_id
+              = link_to "編集", edit_prototype_comment_path(@prototype, comment), class: "btn btn-info btn-xs"
+              = link_to "削除", prototype_comment_path(@prototype, comment) , method: :delete, class: "btn btn-info btn-xs"
+              %br

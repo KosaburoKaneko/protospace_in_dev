@@ -9,6 +9,7 @@
           = link_to prototype.user.name, user_path(prototype.user)
         .proto-posted
           = prototype.posted_date
-    - if user_signed_in? && current_user.id == prototype.user_id
-      .proto-delete
-        = link_to '削除', "/prototypes/#{prototype.id}", method: :delete
+      .proto-likes
+        %p
+          = prototype.likes_count
+          likes

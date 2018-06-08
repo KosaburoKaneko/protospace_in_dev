@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.8'
 gem 'mysql2', '~> 0.3.18'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', "5.0.7"
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
@@ -30,3 +30,5 @@ gem 'sqlite3', group: [:development, :test]
 gem 'pg', '~> 0.19.0', group: :production
 gem 'kaminari'
 gem 'unicorn'
+gem 'bootstrap', '~> 4.1.1'
+
