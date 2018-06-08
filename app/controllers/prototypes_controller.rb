@@ -41,6 +41,7 @@
   end
 
   def edit
+    @main_image = @prototype.set_main_thumbnail
   end
 
   def update
@@ -51,11 +52,12 @@
     end
   end
 
+
+
   private
   def set_prototype
     @prototype = Prototype.find(params[:id])
   end
-
   def prototype_params
     params.require(:prototype).permit(
       :title,
