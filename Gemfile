@@ -28,6 +28,10 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 gem 'sqlite3', group: [:development, :test]
 gem 'pg', '~> 0.19.0', group: :production
 gem 'kaminari'
