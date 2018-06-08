@@ -37,9 +37,11 @@
     @comments = Comment.where(prototype_id: params[:id])
     @tags = @prototype.tags
     @tag = Tag.new
+    @likes = @prototype.likes
   end
 
   def edit
+    @main_image = @prototype.set_main_thumbnail
   end
 
   def update
@@ -50,11 +52,12 @@
     end
   end
 
+
+
   private
   def set_prototype
     @prototype = Prototype.find(params[:id])
   end
-
   def prototype_params
     params.require(:prototype).permit(
       :title,

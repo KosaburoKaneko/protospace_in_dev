@@ -8,7 +8,7 @@
         .proto-user
           = link_to prototype.user.name, user_path(prototype.user)
         .proto-posted
-          = prototype.posted_date
+          = prototype.created_at.to_s(:datetime)
       .proto-likes
         %p
           = prototype.likes_count
