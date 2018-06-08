@@ -19,11 +19,17 @@ gem 'rmagick'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', "~> 4.4.1"
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 gem 'sqlite3', group: [:development, :test]
