@@ -13,8 +13,3 @@
         %p
           = prototype.likes_count
           likes
-    / .proto-good
-    /   = render partial: 'likes/like', locals: { prototype: prototype }
-    / - if user_signed_in? && current_user.id == prototype.user_id
-    /   .proto-delete
-    /     = link_to '削除', "/prototypes/#{prototype.id}", method: :delete

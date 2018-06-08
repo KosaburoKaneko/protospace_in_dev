@@ -1,12 +1,23 @@
 $(document).on("turbolinks:load", function() {
   function buildHTML(comment) {
-    var html = `<div class="main_content__chat_space__comment">
-                  ${comment.content}
-                  <a href="/prototypes/${comment.prototype_id}/comments/${comment.id}/edit">編集</a>
-                  <a rel="nofollow" data-method="delete" href="/prototypes/${comment.prototype_id}/comments/${comment.id}">削除</a>
-                </div>`
-
-    return html
+    var html = `<div class="comment__body">
+                  <h5 class="user-name">
+                    ${comment.user_name}
+                    <span class="posted-time">
+                      ${comment.created_at}
+                    </span>
+                  </h5>
+                  <p class="comment-body">
+                    ${comment.content}
+                  </p>
+                  <a href="/prototypes/${comment.prototype_id}/comments/${comment.id}/edit" class="btn btn-info btn-xs">
+                    編集
+                  </a>
+                  <a rel="nofollow" data-method="delete" href="/prototypes/${comment.prototype_id}/comments/${comment.id}" class="btn btn-info btn-xs">
+                    削除
+                  </a>
+                </div>`;
+    return html;
   }
 
   $('#new_comment').on('submit', function(e) {
@@ -23,7 +34,7 @@ $(document).on("turbolinks:load", function() {
     })
     .done(function(data) {
       var html = buildHTML(data);
-      $('.comment').append(html)
+      $('.comment__content').append(html)
       $('.comment textarea').val('')
       $('.comment input').prop("disabled", false)
     })

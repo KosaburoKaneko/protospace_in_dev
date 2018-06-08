@@ -1,0 +1,45 @@
+.tag {
+  .form-group {
+    .form-control {
+      float: left;
+      width: 200px;
+      margin-right: 20px;
+    }
+    .btn-primary {
+      float: left;
+      width: 50px;
+    }
+  }
+}
+
+
+.comment {
+  clear: both;
+  .comment_write {
+    padding-top: 10px;
+  }
+  &__post {
+    .form-group {
+      .form-control {
+        float: left;
+        width: 90%;
+        margin-right: 20px;
+      }
+      .btn-primary {
+        float: right;
+        width: calc(100% - 20px - 90%);
+      }
+    }
+  }
+  &__content {
+    clear: both;
+    .comment__footer {
+      padding-top: 10px;
+    }
+    .posted-time {
+      font-weight: normal;
+      font-size: 8px;
+      margin-left: 10px;
+    }
+  }
+}
