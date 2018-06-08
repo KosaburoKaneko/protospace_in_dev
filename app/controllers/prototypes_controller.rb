@@ -37,6 +37,7 @@
     @comments = Comment.where(prototype_id: params[:id])
     @tags = @prototype.tags
     @tag = Tag.new
+    @likes = @prototype.likes
   end
 
   def edit
