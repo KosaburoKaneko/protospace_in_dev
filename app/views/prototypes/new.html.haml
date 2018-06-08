@@ -31,13 +31,10 @@
           = f.text_field :catch_copy, require: true, placeholder: "Input Catch Copy"
         .col-md-12
           %h4 Concept
-          = f.text_area :concept, require: true, placeholder: "Input Concept"
+          = f.text_field :concept, require: true, placeholder: "Input Concept"
         .col-md-12
+          %h4 TagList
           = f.fields_for :tags do |tag_field|
-            -# = fin.label :name
-            -#   %h4 タグ作成
-            = tag_field.text_field :name, placeholder: "タグ書いてね"
-            -# = fin.text_field :name, placeholder: "タグ書いてね！"
-
+            = tag_field.text_field :name, placeholder: "Input Tag"
       .row.text-center.proto-btn
         = f.submit "PUBLISH", id: "button", class: "btn btn-lg btn-primary btn-block"
