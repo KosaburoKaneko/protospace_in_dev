@@ -1,3 +1,7 @@
-- @tags.each do |tag|
-  .tag
-    = tag.name
+.container
+  .tag-list
+    %ul
+      - @tags.each do |tag|
+        %li.card.col-md-4
+          = link_to "#{tag.name}", "/tags/#{tag.id}", {class: "card-body btn btn-default"}
+          
