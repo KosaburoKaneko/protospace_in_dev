@@ -71,8 +71,9 @@ $(document).on('turbolinks:load', function() {
     })
     .done(function(prototypes){
       prototypes.sort(function(a,b){
-        return (a.created_at > b.created_at ? 1 : -1)
+        return (a.created_at < b.created_at ? 1 : -1)
       })
+      console.log(prototypes);
       prototype_zone.empty();
       prototypes.forEach(function(prototype){
         prototype_zone.append(buildHTML(prototype));

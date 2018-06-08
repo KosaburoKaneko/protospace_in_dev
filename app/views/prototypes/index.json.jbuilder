@@ -2,7 +2,7 @@ json.array! @prototypes do |prototype|
   json.id           prototype.id
   json.image        prototype.set_main_thumbnail.url
   json.title        prototype.title
-  json.created_at   prototype.posted_date
+  json.created_at   prototype.created_at.to_s(:datetime)
   json.user_name    prototype.user.name
   json.user_id      prototype.user_id
   json.tags         prototype.tags
